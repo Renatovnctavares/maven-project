@@ -3,7 +3,10 @@ pipeline {
     stages{
         stage('Build'){
         steps{
-            sh 'mvn clean package' 
+            withEnv(["PATH=${tool 'maven-3.6.1'}/bin:${tool 'jdk-1.8.0_211'}/bin:${env.PATH}"]) {
+            sh('mvn clean package')
+            }
+            
         }
         }
     }
